@@ -1,0 +1,162 @@
+﻿<Window x:Class="BolterV2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:BolterV2"
+        Title="BolterV2" Height="251" Width="335" Loaded="MainWindow_OnLoaded"  WindowStyle="None" Background="Transparent" Closed="MainWindow_OnClosed" AllowsTransparency="True" Icon="Icon.ico" ResizeMode="NoResize">
+    <Window.Resources>
+        <LinearGradientBrush x:Key="WindowFrameBrush" StartPoint="0,0.5" EndPoint="1,0.5">
+            <GradientStop Color="#FFFEFEFE" Offset="0.4"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="WindowFrameBrush2" StartPoint="0,0.5" EndPoint="1,0.5">
+            <GradientStop Color="CadetBlue" Offset="0.4"/>
+        </LinearGradientBrush>
+        <Style TargetType="Button" x:Key="ButtonStyle">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="TextBlock.TextAlignment" Value="Left" />
+            <Setter Property="TextBlock.FontSize" Value="12" />
+            <Setter Property="TextBlock.FontFamily" Value="Corbel" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="1" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="1.5" >
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="1" Background="WhiteSmoke" BorderBrush="Black" BorderThickness="2" >
+                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Button" x:Key="TabButtonStyle">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="TextBlock.TextAlignment" Value="Left" />
+            <Setter Property="TextBlock.FontSize" Value="20" />
+            <Setter Property="TextBlock.Foreground" Value="LightSlateGray" />
+            <Setter Property="TextBlock.FontFamily" Value="Corbel" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="1" Background="Transparent" BorderBrush="Transparent" BorderThickness="1.5" >
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="MinCloseStyle">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="1" Background="Transparent" BorderBrush="Transparent" BorderThickness="1.5" >
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="1" Background="Aqua" BorderBrush="Aqua" BorderThickness="2" >
+                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background" Value="Aqua"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Border Background="{StaticResource WindowFrameBrush}" CornerRadius="0" BorderBrush="Gray" BorderThickness="1">
+        <Grid Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="400" />
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border Background="{StaticResource WindowFrameBrush2}" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+              CornerRadius="0,0,0,0" Margin="0,0,0,0" MouseLeftButtonDown="DragWindow" Height="29">
+                <Grid>
+                    <TextBlock Foreground="White"  VerticalAlignment="Top" Margin="44,4,-24,0"
+            Text="BOLTER V2 LAUNCHER" FontSize="15"/>
+                    <Image Source="Icon.ico" HorizontalAlignment="Left"></Image>
+                    <Button Style="{StaticResource MinCloseStyle}" Content="x" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="18" 
+                            FontFamily="Razer Header Light" Foreground="White" BorderThickness="0" BorderBrush="CadetBlue" MouseEnter="CloseBottonAnimation"
+                            MouseLeave="CloseBottonAnimation"
+                  Width="24" Height="24" Padding="0" Click="CloseButton" RenderTransformOrigin="0.4,0.867" x:Name="_CloseButton">
+                        <Button.ToolTip>
+                            <ToolTip Background="Black">
+                                <TextBlock Foreground="White" Background="black" >Close</TextBlock>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+                    <Button Style="{StaticResource MinCloseStyle}" Content="─" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,24,0" FontSize="19" 
+                            Background="CadetBlue" BorderThickness="0" BorderBrush="CadetBlue" Foreground="White" FontWeight="Bold"
+                            MouseEnter="MinimizeBottonAnimation" MouseLeave="MinimizeBottonAnimation"
+                  Width="24" Height="24" Padding="0" Click="MinimizeButton"  RenderTransformOrigin="0.4,0.867" x:Name="_MinimizeButton">
+                        <Button.ToolTip>
+                            <ToolTip Background="Black">
+                                <TextBlock Foreground="White" Background="black" >Minimize</TextBlock>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+                    <Rectangle VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="24" Height="5" x:Name="SpaceFix" Fill="{StaticResource WindowFrameBrush2}" Stroke="{StaticResource WindowFrameBrush2}"/>
+                    <Rectangle VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="24" Margin="0,0,24,0" Height="5" x:Name="SpaceFix2" Fill="{StaticResource WindowFrameBrush2}" Stroke="{StaticResource WindowFrameBrush2}"/>
+                    <Rectangle VerticalAlignment="Top" HorizontalAlignment="Right" Width="24" Margin="0,0,24,0" Height="5" x:Name="SpaceFix3" Fill="{StaticResource WindowFrameBrush2}" Stroke="{StaticResource WindowFrameBrush2}"/>
+                </Grid>
+            </Border>
+            <TabControl Margin="0,29,0,152" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" SelectionChanged="Selector_OnSelectionChanged" x:Name="TabControl">
+                <TabItem Header="Processes" BorderThickness="4,4,4,4" BorderBrush="#FFFEFEFE" Background="#FFFEFEFE" Margin="-2,-2,9,0" FontSize="20" Visibility="Hidden">
+                    <Grid>
+                        <Button Visibility="Hidden" Style="{StaticResource ButtonStyle}" Content="Start New" HorizontalAlignment="Left" Margin="231,95,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" x:Name="StartButton" />
+                        <ListBox Margin="0,0,100,2"  x:Name="ProcessListBox" BorderThickness="1.4,.9,1.01,1.01" BorderBrush="Gray" SelectionChanged="ProcessListBox_OnSelectionChanged">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="{x:Type local:ListImg}">
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Image Source="{Binding Image}" Margin="3"/>
+                                        <TextBlock Text="{Binding Str}" FontSize="16"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+
+                        </ListBox>
+                        <TextBlock  Text="Loading..." Visibility="Hidden"  HorizontalAlignment="Left" Margin="240,146,0,0" VerticalAlignment="Top" Width="95" Height="23" Foreground="Blue" x:Name="LoadingText" FontSize="15"/>
+                        <Button Style="{StaticResource ButtonStyle}" Content="LAUNCH" HorizontalAlignment="Left" Margin="228,148,0,0" VerticalAlignment="Top" Width="95" Height="23" Click="Button_Click" x:Name="DebugButton"/>
+                        <Button Style="{StaticResource ButtonStyle}" Content="REFRESH" HorizontalAlignment="Left" Margin="228,118,0,0" VerticalAlignment="Top" Width="95" Height="23" Click="Refresh" />
+                        <Button Style="{StaticResource ButtonStyle}" Content="BACK" HorizontalAlignment="Left" Margin="228,0,0,0" VerticalAlignment="Top" Width="95" Height="23" Click="Refresh" />
+                    </Grid>
+                </TabItem>
+                <TabItem Header="About" BorderThickness="4,4,4,4" BorderBrush="#FFFEFEFE" Background="#FFFEFEFE" Margin="-9,-2,15,0" FontSize="20" Visibility="Hidden">
+                    <Grid Margin="0,-10,0,10">
+                        <TextBlock HorizontalAlignment="Left" Foreground="Black" Margin="10,10,0,0" TextWrapping="Wrap" Text="Bolter V2 Multi-Box Launcher" VerticalAlignment="Top" Width="300" FontWeight="Bold" FontStyle="Italic"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="10,34,0,0" TextWrapping="Wrap" FontSize="10" FontStyle="Oblique" Foreground="Black" Text=
+                                   "Version: 0.0.1
+                                   (c) 2014 Devnull of ffevo forums" 
+                                   VerticalAlignment="Top" Height="27" Width="148"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="10,89,0,0" Foreground="Black" TextWrapping="Wrap" Text="Special Thanks" VerticalAlignment="Top" FontSize="16"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="10,108,0,0" Foreground="Black" FontStyle="Oblique" TextWrapping="Wrap" Text="eradicate - xml serialization, xaml
+                                   atom0s - fully native CLR hosting, sigscan
+                                   ffevo.net forums and the ffevo.net development team - Guidance and Support" FontSize="10" VerticalAlignment="Top" Height="52" Width="193"/>
+                        <Button Content="DONATE" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Left" Margin="229,138,0,-3" VerticalAlignment="Bottom" Width="95" Height="23" Click="Donate"/>
+
+                    </Grid>
+                </TabItem>
+            </TabControl>
+            <Button Content="Processes" Style="{StaticResource TabButtonStyle}" FontFamily="Corbel"  HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Width="93" Height="34" x:Name="ProcessesTab" Click="ProcessesTab_OnClick" MouseEnter="Tab_OnMouse" MouseLeave="Tab_OnMouse"/>
+            <Button Content="About" Style="{StaticResource TabButtonStyle}" HorizontalAlignment="Left" Margin="92,30,0,0" VerticalAlignment="Top" Width="75" Height="34" x:Name="AboutTab" Click="AboutTab_OnClick" MouseEnter="Tab_OnMouse" MouseLeave="Tab_OnMouse"/>
+        </Grid>
+    </Border>
+</Window>
